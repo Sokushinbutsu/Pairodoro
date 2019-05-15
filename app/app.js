@@ -9,14 +9,14 @@
 
 */
 
-//localStorage interaction function
+// ----localStorage interaction functions----
 //get item
 var getItem = function(key) {
   return window.localStorage.getItem(key);
 };
 
 //create
-var createItem = function(key, value) {
+const createItem = (key, value) => {
   return window.localStorage.setItem(key, JSON.stringify(value));
 };
 
@@ -40,27 +40,39 @@ var keyExists = function(key) {
   return currentValue !== null;
 };
 
+// Display alert when time period is up
+const timer = length => {
+  setTimeout(function() {
+    alert("Hello");
+  }, length);
+};
+
 ///////////////////////////////////////////
 //event handlers for the buttons and ... possibly the inputboxes
 //preventdefault on button clicks
 $(document).ready(function() {
+  let counter = 0;
+
   $("#startButton").click(function(event) {
     event.preventDefault();
+    counter++;
+    //TODO: sanitize user input.
 
     const driver = $("#driver").val();
     const navigator = $("#navigator").val();
-    const length = $("#length").val();
+    const periodLength = $("#length").val();
     const numPeriods = $("#periods").val();
+    const periodLengthMS = periodLength * 60000;
 
     let obj = {
       driver: driver,
       navigator: navigator,
       startTime: Date(),
-      length: length,
+      Periodlength: periodLength,
       periods: numPeriods
     };
-    createItem("pomodoro", obj);
-    //}
+    createItem(`pomodoro-${counter}`, obj);
+    timer(periodLengthMS);
   });
 
   $("#updateButton").click(function(event) {
