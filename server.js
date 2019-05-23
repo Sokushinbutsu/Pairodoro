@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bp = require("body-parser");
+const pomodoros = require("./routes/api/pomodoros");
 
 const app = express();
 
@@ -13,6 +14,8 @@ mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log("Connected to mlab DB"))
   .catch(err => console.log(err));
+
+app.use("routes/api/pomodoros", pomodoros);
 
 const port = process.env.port || 4000;
 

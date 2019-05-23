@@ -17,7 +17,7 @@ const PomodoroSchema = new Schema({
   },
   numPeriods: {
     type: Number,
-    requied: true
+    required: true
   },
   starteDateTime: {
     type: Date,
@@ -25,4 +25,6 @@ const PomodoroSchema = new Schema({
   }
 });
 
-module.exports = Pomodoro = mongoose.model("pomodoro", PomodoroSchema);
+const Pomodoro = mongoose.model("pomodoro", PomodoroSchema);
+
+module.exports = Pomodoro;
