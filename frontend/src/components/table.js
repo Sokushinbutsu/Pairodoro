@@ -3,6 +3,8 @@ import React from "react";
 class Table extends React.Component {
   render() {
     const items = this.props.items;
+    // put the most recent at the top
+    items.reverse();
     return (
       <table>
         <tbody>
