@@ -1,5 +1,8 @@
 import React from "react";
 import { addObj } from "../actions/actions";
+import { connect } from "tls";
+import Axios from "axios";
+import Pomodoro from "../models/Pomodoro";
 
 class Forms extends React.Component {
   constructor(props) {
@@ -18,15 +21,16 @@ class Forms extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    const newPomodoroObj = {
+    const pomodoroObj = {
       driver: this.state.driver,
       navigator: this.state.navigator,
       periodLength: this.state.periodLength,
       numPeriods: this.state.numPeriods
     };
-
-    //this.props.addObj(newPomodoroObj);
-    console.log(newPomodoroObj);
+    // Axios.post("/api/pomodoros", newPomodoroObj)
+    //   .then(res => console.log(res))
+    //   .catch(err => console.log(err));
+    localStorage.setItem(pomodoroObj, JSON.stringify(pomodoroObj));
   }
 
   handleChange(event) {
@@ -44,15 +48,15 @@ class Forms extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Driver:
+          <span>Driver:</span>
           <input type="text" name="driver" onChange={this.handleChange} />
         </label>
         <label>
-          Navigator:
+          <span>Navigator:</span>
           <input type="text" name="navigator" onChange={this.handleChange} />
         </label>
         <label>
-          period length (minutes):
+          <span>period length (minutes):</span>
           <input
             type="number"
             name="periodLength"
@@ -60,7 +64,7 @@ class Forms extends React.Component {
           />
         </label>
         <label>
-          Number of periods:
+          <span>Number of periods:</span>
           <input type="number" name="numPeriods" onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />

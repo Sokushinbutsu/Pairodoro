@@ -15,7 +15,7 @@ mongoose
   .then(() => console.log("Connected to mlab DB"))
   .catch(err => console.log(err));
 
-app.use("routes/api/pomodoros", pomodoros);
+app.use("/api/pomodoros", pomodoros);
 
 const port = process.env.port || 4000;
 

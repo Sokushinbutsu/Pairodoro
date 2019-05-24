@@ -8,20 +8,24 @@ const Pomodoro = require("../../frontend/src/models/Pomodoro");
 // @desc    Get Everything
 // @access  Public
 router.get("/", (req, res) => {
-  Pomodoro.find()
-    .sort({ date: -1 })
-    .then(items => res.json(items));
+  res.send("API is working properly");
 });
 
 // @route   POST api/pomodoros
 // @desc    Create A new pomodoro object
 // @access  Public
 router.post("/", (req, res) => {
-  const newItem = new Pomodoro({
-    name: req.body.name
-  });
-
-  newItem.save().then(item => res.json(item));
+  console.log(req.body);
+  let pom = new Pomodoro(req.body);
+  console.log(pom);
+  pom
+    .save()
+    .then(pom => {
+      res.status(200).json({ success: "New pomodoro object created" });
+    })
+    .catch(err => {
+      res.status(400).send("fail");
+    });
 });
 
 // @route   DELETE api/pomodoros/:id
