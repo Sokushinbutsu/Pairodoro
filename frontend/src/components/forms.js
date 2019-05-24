@@ -44,6 +44,16 @@ class Forms extends React.Component {
             onChange={this.props.handleChange}
           />
         </label>
+        <label>
+          <span>Notes:</span>
+          <input
+            id="notes"
+            value={this.props.notes}
+            type="text"
+            name="notes"
+            onChange={this.props.handleChange}
+          />
+        </label>
         <input type="submit" value="Submit" />
       </form>
     );

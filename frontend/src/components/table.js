@@ -1,19 +1,31 @@
 import React from "react";
+import moment from "moment";
 
 class Table extends React.Component {
-  constructor(props) {
-    super(props);
-    //this.state = window.localStorage.getItem("*");
-  }
   render() {
+    const items = this.props.items;
     return (
       <table>
-        <tr>
-          <th>Driver</th>
-          <th>Navigator</th>
-          <th>Period Length</th>
-          <th>Notes</th>
-        </tr>
+        <tbody>
+          <tr>
+            <th>Driver</th>
+            <th>Navigator</th>
+            <th>Period Length</th>
+            <th>Notes</th>
+            <th>Date</th>
+          </tr>
+          {items.map(item => {
+            return (
+              <tr>
+                <td>{item.driver}</td>
+                <td>{item.navigator}</td>
+                <td>{item.periodLength}</td>
+                <td>{item.notes}</td>
+                <td>{moment().format("llll")}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     );
   }
