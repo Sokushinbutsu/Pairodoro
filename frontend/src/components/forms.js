@@ -1,71 +1,48 @@
 import React from "react";
-import { addObj } from "../actions/actions";
-import { connect } from "tls";
-import Axios from "axios";
-import Pomodoro from "../models/Pomodoro";
 
 class Forms extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      driver: "",
-      navigator: "",
-      periodLength: "",
-      numPeriods: ""
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-
-    const pomodoroObj = {
-      driver: this.state.driver,
-      navigator: this.state.navigator,
-      periodLength: this.state.periodLength,
-      numPeriods: this.state.numPeriods
-    };
-    // Axios.post("/api/pomodoros", newPomodoroObj)
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log(err));
-    localStorage.setItem(pomodoroObj, JSON.stringify(pomodoroObj));
-  }
-
-  handleChange(event) {
-    // generalized change handler,
-    // will set state to number if parseInt is not NaN
-
-    this.setState({
-      [event.target.name]: parseInt(event.target.value)
-        ? parseInt(event.target.value)
-        : event.target.value
-    });
-  }
-
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.props.handleSubmit}>
         <label>
           <span>Driver:</span>
-          <input type="text" name="driver" onChange={this.handleChange} />
+          <input
+            id="driver"
+            value={this.props.newDriver}
+            type="text"
+            name="driver"
+            onChange={this.props.handleChange}
+          />
         </label>
         <label>
           <span>Navigator:</span>
-          <input type="text" name="navigator" onChange={this.handleChange} />
+          <input
+            id="navigator"
+            value={this.props.newNavigator}
+            type="text"
+            name="navigator"
+            onChange={this.props.handleChange}
+          />
         </label>
         <label>
           <span>period length (minutes):</span>
           <input
+            id="periodLength"
+            value={this.props.newPeriodLength}
             type="number"
             name="periodLength"
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
           />
         </label>
         <label>
           <span>Number of periods:</span>
-          <input type="number" name="numPeriods" onChange={this.handleChange} />
+          <input
+            id="numPeriods"
+            value={this.props.newNumPeriods}
+            type="number"
+            name="numPeriods"
+            onChange={this.props.handleChange}
+          />
         </label>
         <input type="submit" value="Submit" />
       </form>
