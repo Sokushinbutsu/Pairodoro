@@ -47,7 +47,7 @@ class App extends React.Component {
 
     setTimeout(function() {
       audio.play();
-    }, this.state.periodLength);
+    }, this.state.periodLength * 60000);
   };
 
   handleChange = event => {
@@ -69,16 +69,20 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Forms
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          newNavigator={this.state.navigator}
-          newDriver={this.state.driver}
-          newPeriodLength={this.state.periodLength}
-          newDate={this.state.date}
-          newPurpose={this.state.purpose}
-        />
-        <Table items={this.state.items} handleDelete={this.handleDelete} />
+        <div className="forms">
+          <Forms
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            newNavigator={this.state.navigator}
+            newDriver={this.state.driver}
+            newPeriodLength={this.state.periodLength}
+            newDate={this.state.date}
+            newPurpose={this.state.purpose}
+          />
+        </div>
+        <div className="table">
+          <Table items={this.state.items} handleDelete={this.handleDelete} />
+        </div>
       </div>
     );
   }
