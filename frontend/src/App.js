@@ -1,6 +1,7 @@
 import React from "react";
 import Forms from "./components/forms";
 import Table from "./components/table";
+import moment from "moment";
 import "./App.css";
 class App extends React.Component {
   constructor() {
@@ -31,7 +32,7 @@ class App extends React.Component {
       periodLength: this.state.periodLength,
       numPeriods: this.state.numPeriods,
       purpose: this.state.purpose,
-      date: Date.now
+      date: moment().format("llll")
     });
 
     this.setState({
@@ -74,7 +75,7 @@ class App extends React.Component {
           newNavigator={this.state.navigator}
           newDriver={this.state.driver}
           newPeriodLength={this.state.periodLength}
-          newNumPeriods={this.state.numPeriods}
+          newDate={this.state.date}
           newPurpose={this.state.purpose}
         />
         <Table items={this.state.items} handleDelete={this.handleDelete} />

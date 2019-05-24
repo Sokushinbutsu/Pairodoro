@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 
 class Table extends React.Component {
   render() {
@@ -12,6 +11,7 @@ class Table extends React.Component {
             <th>Navigator</th>
             <th>Period Length</th>
             <th>Purpose</th>
+            <th>Notes</th>
             <th>Date</th>
             <th />
           </tr>
@@ -22,7 +22,10 @@ class Table extends React.Component {
                 <td>{item.navigator}</td>
                 <td>{item.periodLength}</td>
                 <td>{item.purpose}</td>
-                <td>{moment().format("llll")}</td>
+                <td>
+                  <textarea />
+                </td>
+                <td>{item.date}</td>
                 <td className="delete">
                   {" "}
                   <input

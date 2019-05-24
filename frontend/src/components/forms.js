@@ -35,16 +35,6 @@ class Forms extends React.Component {
           />
         </label>
         <label>
-          <span>Number of periods:</span>
-          <input
-            id="numPeriods"
-            value={this.props.newNumPeriods}
-            type="number"
-            name="numPeriods"
-            onChange={this.props.handleChange}
-          />
-        </label>
-        <label>
           <span>Purpose:</span>
           <input
             id="purpose"
