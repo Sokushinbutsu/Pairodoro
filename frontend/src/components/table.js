@@ -13,6 +13,7 @@ class Table extends React.Component {
             <th>Period Length</th>
             <th>Notes</th>
             <th>Date</th>
+            <th />
           </tr>
           {items.map(item => {
             return (
@@ -22,6 +23,14 @@ class Table extends React.Component {
                 <td>{item.periodLength}</td>
                 <td>{item.notes}</td>
                 <td>{moment().format("llll")}</td>
+                <td className="delete">
+                  {" "}
+                  <input
+                    type="button"
+                    onClick={this.props.handleDelete.bind(this)}
+                    value="X"
+                  />
+                </td>
               </tr>
             );
           })}

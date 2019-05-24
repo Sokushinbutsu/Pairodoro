@@ -21,6 +21,9 @@ class App extends React.Component {
     event.preventDefault();
 
     let items = [...this.state.items];
+    const audio = new Audio(
+      "https://freesound.org/people/kwahmah_02/sounds/250629/download/250629__kwahmah-02__alarm1.mp3"
+    );
 
     items.push({
       driver: this.state.driver,
@@ -31,8 +34,6 @@ class App extends React.Component {
       date: Date.now
     });
 
-    console.log(items);
-
     this.setState({
       items,
       driver: "",
@@ -42,6 +43,10 @@ class App extends React.Component {
       notes: "",
       date: ""
     });
+
+    setTimeout(function() {
+      audio.play();
+    }, this.state.periodLength);
   };
 
   handleChange = event => {
@@ -52,6 +57,12 @@ class App extends React.Component {
         ? parseInt(event.target.value)
         : event.target.value
     });
+  };
+
+  handleDelete = row => {
+    const index = this.state.items.indexOf(row);
+    this.state.items.splice(index, 1);
+    this.setState(this.state.items);
   };
 
   render() {
@@ -66,7 +77,7 @@ class App extends React.Component {
           newNumPeriods={this.state.numPeriods}
           newNotes={this.state.notes}
         />
-        <Table items={this.state.items} />
+        <Table items={this.state.items} handleDelete={this.handleDelete} />
       </div>
     );
   }
