@@ -34,9 +34,28 @@ form input[type="button"] {
   border: none;
   padding: 8px 10px 8px 10px;
   border-radius: 5px;
-  color: #a8bace;
+  color: white;
 }
 form input[type="submit"]:hover,
 form input[type="button"]:hover {
   background: #394d61;
+}
+
+.del-btn {
+  display: inline-block;
+  border: none;
+  padding: 0.5rem;
+  text-decoration: none;
+  background: #576e86;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  text-align: center;
+}
+
+.del-btn:hover,
+.del-btn:focus {
+  background: red;
 }

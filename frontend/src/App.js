@@ -11,7 +11,7 @@ class App extends React.Component {
       navigator: "",
       periodLength: "",
       numPeriods: "",
-      notes: "",
+      purpose: "",
       date: "",
       items: []
     };
@@ -30,7 +30,7 @@ class App extends React.Component {
       navigator: this.state.navigator,
       periodLength: this.state.periodLength,
       numPeriods: this.state.numPeriods,
-      notes: this.state.notes,
+      purpose: this.state.purpose,
       date: Date.now
     });
 
@@ -40,7 +40,7 @@ class App extends React.Component {
       navigator: "",
       periodLength: "",
       numPeriods: "",
-      notes: "",
+      purpose: "",
       date: ""
     });
 
@@ -75,7 +75,7 @@ class App extends React.Component {
           newDriver={this.state.driver}
           newPeriodLength={this.state.periodLength}
           newNumPeriods={this.state.numPeriods}
-          newNotes={this.state.notes}
+          newPurpose={this.state.purpose}
         />
         <Table items={this.state.items} handleDelete={this.handleDelete} />
       </div>

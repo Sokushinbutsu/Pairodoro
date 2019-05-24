@@ -45,12 +45,12 @@ class Forms extends React.Component {
           />
         </label>
         <label>
-          <span>Notes:</span>
+          <span>Purpose:</span>
           <input
-            id="notes"
-            value={this.props.notes}
+            id="purpose"
+            value={this.props.newPurpose}
             type="text"
-            name="notes"
+            name="purpose"
             onChange={this.props.handleChange}
           />
         </label>

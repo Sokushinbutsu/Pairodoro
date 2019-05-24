@@ -11,7 +11,7 @@ class Table extends React.Component {
             <th>Driver</th>
             <th>Navigator</th>
             <th>Period Length</th>
-            <th>Notes</th>
+            <th>Purpose</th>
             <th>Date</th>
             <th />
           </tr>
@@ -21,15 +21,17 @@ class Table extends React.Component {
                 <td>{item.driver}</td>
                 <td>{item.navigator}</td>
                 <td>{item.periodLength}</td>
-                <td>{item.notes}</td>
+                <td>{item.purpose}</td>
                 <td>{moment().format("llll")}</td>
                 <td className="delete">
                   {" "}
                   <input
+                    class="del-btn"
                     type="button"
                     onClick={this.props.handleDelete.bind(this)}
                     value="X"
                   />
+                  <style />
                 </td>
               </tr>
             );
