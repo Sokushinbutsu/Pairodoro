@@ -2,6 +2,7 @@ import React from 'react';
 import Forms from './components/forms';
 import Table from './components/table';
 import moment from 'moment';
+import Axios from 'axios';
 import './App.css';
 class App extends React.Component {
   constructor(props) {
@@ -21,12 +22,13 @@ class App extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    let items = [...this.state.items];
+    //let items = [...this.state.items];
+    let item = [];
     const audio = new Audio(
       'https://freesound.org/people/kwahmah_02/sounds/250629/download/250629__kwahmah-02__alarm1.mp3'
     );
 
-    items.push({
+    item.push({
       driver: this.state.driver,
       navigator: this.state.navigator,
       periodLength: this.state.periodLength,
@@ -35,15 +37,33 @@ class App extends React.Component {
       date: moment().format('llll')
     });
 
-    this.setState({
-      items,
-      driver: '',
-      navigator: '',
-      periodLength: '',
-      numPeriods: '',
-      purpose: '',
-      date: ''
+    Axios.post('/api/pomodoros', { item }).then(results => {
+      console.log(results);
     });
+
+    this.setState(state => {
+      const items = state.items.concat(item);
+
+      return {
+        items,
+        driver: '',
+        navigator: '',
+        periodLength: '',
+        numPeriods: '',
+        purpose: '',
+        date: ''
+      };
+    });
+
+    // this.setState({
+    //   items: [...this.state.items, item],
+    //   driver: '',
+    //   navigator: '',
+    //   periodLength: '',
+    //   numPeriods: '',
+    //   purpose: '',
+    //   date: ''
+    // });
 
     setTimeout(function() {
       audio.play();

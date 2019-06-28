@@ -4,6 +4,7 @@ const pomodoros = require('./routes/api/pomodoros');
 
 const app = express();
 
+app.use(express.static('./frontend/src'));
 app.use(bp.urlencoded({ extended: false }));
 app.use(bp.json());
 
