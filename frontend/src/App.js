@@ -22,7 +22,6 @@ class App extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    //let items = [...this.state.items];
     let item = [];
     // const audio = new Audio(
     //   'https://freesound.org/people/kwahmah_02/sounds/250629/download/250629__kwahmah-02__alarm1.mp3'
@@ -89,6 +88,7 @@ class App extends React.Component {
             newPeriodLength={this.state.periodLength}
             newDate={this.state.date}
             newPurpose={this.state.purpose}
+            newPeriods={this.state.numPeriods}
           />
         </div>
         <div className="table">

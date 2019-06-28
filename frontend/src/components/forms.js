@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class Forms extends React.Component {
   render() {
@@ -35,6 +35,16 @@ class Forms extends React.Component {
           />
         </label>
         <label>
+          <span>Number of Periods:</span>
+          <input
+            id="periods"
+            value={this.props.newPeriods}
+            type="number"
+            name="numPeriods"
+            onChange={this.props.handleChange}
+          />
+        </label>
+        <label>
           <span>Purpose:</span>
           <input
             id="purpose"
@@ -44,6 +54,7 @@ class Forms extends React.Component {
             onChange={this.props.handleChange}
           />
         </label>
+
         <input type="submit" value="Submit" />
       </form>
     );

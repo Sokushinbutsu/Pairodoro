@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../../db');
 
 // Pomodoro Model
-const Pomodoro = require('../../frontend/src/models/Pomodoro');
+const Pomodoro = require('../../models/Pomodoro');
 
 // @route   GET api/pomodoros
 // @desc    Get Everything
@@ -22,17 +22,16 @@ router.get('/', (req, res) => {
 // @desc    Create A new pomodoro object
 // @access  Public
 router.post('/', (req, res) => {
-  //console.log(req.body);
   let pom = new Pomodoro(req.body);
-  console.log(pom);
-  // pom
-  //   .save()
-  //   .then(pom => {
-  //     res.status(200).json({ success: 'New pomodoro object created' });
-  //   })
-  //   .catch(err => {
-  //     res.status(400).send('fail');
-  //   });
+  pom
+    .save()
+    .then(pom => {
+      res.status(200).json({ success: 'New pomodoro object created' });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(400).send('fail');
+    });
 });
 
 // @route   DELETE api/pomodoros/:id
