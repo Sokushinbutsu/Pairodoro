@@ -1,19 +1,19 @@
-import React from "react";
-import Forms from "./components/forms";
-import Table from "./components/table";
-import moment from "moment";
-import "./App.css";
+import React from 'react';
+import Forms from './components/forms';
+import Table from './components/table';
+import moment from 'moment';
+import './App.css';
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      driver: "",
-      navigator: "",
-      periodLength: "",
-      numPeriods: "",
-      purpose: "",
-      date: "",
+      driver: '',
+      navigator: '',
+      periodLength: '',
+      numPeriods: '',
+      purpose: '',
+      date: '',
       items: []
     };
   }
@@ -23,7 +23,7 @@ class App extends React.Component {
 
     let items = [...this.state.items];
     const audio = new Audio(
-      "https://freesound.org/people/kwahmah_02/sounds/250629/download/250629__kwahmah-02__alarm1.mp3"
+      'https://freesound.org/people/kwahmah_02/sounds/250629/download/250629__kwahmah-02__alarm1.mp3'
     );
 
     items.push({
@@ -32,17 +32,17 @@ class App extends React.Component {
       periodLength: this.state.periodLength,
       numPeriods: this.state.numPeriods,
       purpose: this.state.purpose,
-      date: moment().format("llll")
+      date: moment().format('llll')
     });
 
     this.setState({
       items,
-      driver: "",
-      navigator: "",
-      periodLength: "",
-      numPeriods: "",
-      purpose: "",
-      date: ""
+      driver: '',
+      navigator: '',
+      periodLength: '',
+      numPeriods: '',
+      purpose: '',
+      date: ''
     });
 
     setTimeout(function() {
@@ -61,6 +61,7 @@ class App extends React.Component {
   };
 
   handleDelete = row => {
+    // wow this is bad.
     const index = this.state.items.indexOf(row);
     this.state.items.splice(index, 1);
     this.setState(this.state.items);

@@ -1,9 +1,9 @@
-import axios from "axios";
-import { GET_ALL, ADD_OBJ, DELETE_OBJ, OBJS_LOADING } from "./types";
+import axios from 'axios';
+import { GET_ALL, ADD_OBJ, DELETE_OBJ, OBJS_LOADING } from './types';
 
 export const getObjs = () => dispatch => {
   dispatch(setItemsLoading());
-  axios.get("/api/pomodoros").then(res =>
+  axios.get('/api/pomodoros').then(res =>
     dispatch({
       type: GET_ALL,
       payload: res.data
@@ -12,7 +12,7 @@ export const getObjs = () => dispatch => {
 };
 
 export const addObj = item => dispatch => {
-  axios.post("/api/pomodoros", item).then(res =>
+  axios.post('/api/pomodoros', item).then(res =>
     dispatch({
       type: ADD_OBJ,
       payload: res.data
