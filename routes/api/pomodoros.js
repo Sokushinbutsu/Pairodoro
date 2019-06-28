@@ -38,9 +38,14 @@ router.post('/', (req, res) => {
 // @desc    Delete A Item
 // @access  Public
 router.delete('/:id', (req, res) => {
-  Pomodoro.findById(req.params.id)
-    .then(item => item.remove().then(() => res.json({ success: true })))
-    .catch(err => res.status(404).json({ success: false }));
+  Pomodoro.deleteOne({ id: req.params.id })
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch(err => {
+      console.error('There was an error deleting a document');
+      res.status(500).send();
+    });
 });
 
 module.exports = router;

@@ -4,6 +4,7 @@ import Table from './components/table';
 import moment from 'moment';
 import Axios from 'axios';
 import './App.css';
+import uuid from 'uuid';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -17,46 +18,51 @@ class App extends React.Component {
       date: '',
       items: []
     };
+
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  setTimer() {
+    const audio = new Audio(
+      'https://freesound.org/people/kwahmah_02/sounds/250629/download/250629__kwahmah-02__alarm1.mp3'
+    );
+    setTimeout(function() {
+      audio.play();
+    }, this.state.periodLength * 60000);
   }
 
   handleSubmit = event => {
     event.preventDefault();
 
-    let item = [];
-    // const audio = new Audio(
-    //   'https://freesound.org/people/kwahmah_02/sounds/250629/download/250629__kwahmah-02__alarm1.mp3'
-    // );
-
-    item = {
+    let item = {
       driver: this.state.driver,
       navigator: this.state.navigator,
       periodLength: this.state.periodLength,
       numPeriods: this.state.numPeriods,
       purpose: this.state.purpose,
-      date: moment().format('llll')
+      date: moment().format('llll'),
+      id: uuid()
     };
 
-    Axios.post('/api/pomodoros', item).then(results => {
-      console.log(results);
-    });
+    Axios.post('/api/pomodoros', item)
+      .then(results => {
+        this.setState(state => {
+          const items = state.items.concat(item);
 
-    this.setState(state => {
-      const items = state.items.concat(item);
-
-      return {
-        items,
-        driver: '',
-        navigator: '',
-        periodLength: '',
-        numPeriods: '',
-        purpose: '',
-        date: ''
-      };
-    });
-
-    // setTimeout(function() {
-    //   audio.play();
-    // }, this.state.periodLength * 60000);
+          return {
+            items,
+            driver: '',
+            navigator: '',
+            periodLength: '',
+            numPeriods: '',
+            purpose: '',
+            date: ''
+          };
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   handleChange = event => {
@@ -69,12 +75,25 @@ class App extends React.Component {
     });
   };
 
-  handleDelete = row => {
-    // wow this is bad.
-    const index = this.state.items.indexOf(row);
-    this.state.items.splice(index, 1);
-    this.setState(this.state.items);
-  };
+  handleDelete(id) {
+    Axios.delete(`api/pomodoros/${id}`)
+      .then(() => {
+        // const index = this.state.items.indexOf();
+        // let copy = [...this.state.items];
+        // copy.splice(index, 1);
+        // this.setState({ items: copy });
+        this.setState(state => {
+          const items = state.items.filter(item => item.id !== id);
+
+          return {
+            items
+          };
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
 
   render() {
     return (

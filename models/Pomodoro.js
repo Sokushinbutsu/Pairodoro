@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PomodoroSchema = new Schema({
@@ -22,9 +22,13 @@ const PomodoroSchema = new Schema({
   starteDateTime: {
     type: Date,
     default: Date()
+  },
+  id: {
+    type: String,
+    required: true
   }
 });
 
-const Pomodoro = mongoose.model("pomodoro", PomodoroSchema);
+const Pomodoro = mongoose.model('pomodoro', PomodoroSchema);
 
 module.exports = Pomodoro;

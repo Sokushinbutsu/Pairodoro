@@ -20,7 +20,7 @@ class Table extends React.Component {
           </tr>
           {items.map(item => {
             return (
-              <tr key={item.date}>
+              <tr data-uuid={item.id} key={item.id}>
                 <td>{item.driver}</td>
                 <td>{item.navigator}</td>
                 <td>{item.periodLength}</td>
@@ -35,7 +35,10 @@ class Table extends React.Component {
                   <input
                     className="del-btn"
                     type="button"
-                    onClick={this.props.handleDelete.bind(this)}
+                    data-uuid={item.uuid}
+                    onClick={() => {
+                      this.props.handleDelete(item.id);
+                    }}
                     value="X"
                   />
                   <style />
