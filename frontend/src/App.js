@@ -24,20 +24,20 @@ class App extends React.Component {
 
     //let items = [...this.state.items];
     let item = [];
-    const audio = new Audio(
-      'https://freesound.org/people/kwahmah_02/sounds/250629/download/250629__kwahmah-02__alarm1.mp3'
-    );
+    // const audio = new Audio(
+    //   'https://freesound.org/people/kwahmah_02/sounds/250629/download/250629__kwahmah-02__alarm1.mp3'
+    // );
 
-    item.push({
+    item = {
       driver: this.state.driver,
       navigator: this.state.navigator,
       periodLength: this.state.periodLength,
       numPeriods: this.state.numPeriods,
       purpose: this.state.purpose,
       date: moment().format('llll')
-    });
+    };
 
-    Axios.post('/api/pomodoros', { item }).then(results => {
+    Axios.post('/api/pomodoros', item).then(results => {
       console.log(results);
     });
 
@@ -55,19 +55,9 @@ class App extends React.Component {
       };
     });
 
-    // this.setState({
-    //   items: [...this.state.items, item],
-    //   driver: '',
-    //   navigator: '',
-    //   periodLength: '',
-    //   numPeriods: '',
-    //   purpose: '',
-    //   date: ''
-    // });
-
-    setTimeout(function() {
-      audio.play();
-    }, this.state.periodLength * 60000);
+    // setTimeout(function() {
+    //   audio.play();
+    // }, this.state.periodLength * 60000);
   };
 
   handleChange = event => {

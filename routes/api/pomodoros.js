@@ -22,9 +22,9 @@ router.get('/', (req, res) => {
 // @desc    Create A new pomodoro object
 // @access  Public
 router.post('/', (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   let pom = new Pomodoro(req.body);
-  // console.log(pom);
+  console.log(pom);
   // pom
   //   .save()
   //   .then(pom => {
