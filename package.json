@@ -9,17 +9,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sokushinbutsu/hrext09-my-cruddy-app.git"
+    "url": "git+https://github.com/Sokushinbutsu/Pairodoro.git"
   },
   "author": "Brian Nelson",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Sokushinbutsu/hrext09-my-cruddy-app/issues"
+    "url": "https://github.com/Sokushinbutsu/Pairodoro/issues"
   },
-  "homepage": "https://github.com/Sokushinbutsu/hrext09-my-cruddy-app#readme",
+  "homepage": "https://github.com/Sokushinbutsu/Pairodoro#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "easytimer.js": "^3.2.0",
     "express": "^4.16.4",
+    "flipclock": "^0.10.8",
     "mongoose": "^5.5.9",
     "typescript": "^3.4.5",
     "uuid": "^3.3.2"
