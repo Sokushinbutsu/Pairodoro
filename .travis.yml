@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - 11.6.0
+deploy:
+  provider: heroku
+  api_key:
+    secure: N4cjVYMdvx91n3oAB0cPwsLlJDu5xIstFg7lgY18hOS7BpB+B00SBhzZaOlOU41IrmqIIzgZFDqgJPczA3ZSE11RhrvRD1UTFkg6X7NPYjXPF9Y+DjXhaftd9y6r30i5Ml87429xwZjom7UDVWZywe2/HFFfqBORhcz/8GDIcIgQuI+PenosZIYzvW0GX7rjqmXBum1iCUYSmpo5egrPKxYDXs2R2kxZHGIfdBRa+MMQIwR/Jbd1VMhUrjszSGhSs6JYx/20uV69fskmSXXNA7tXHOJXc3k3CmfVkG5ExmfonzKjn/pf4QAKcsGvcZxd/zaLDWMR/45spuwUvoqLOmntPI2E7hgyAw78a6hLPkcbyYzdAiF6wWmNbESRSuhh6VKm2Y/Yl6UUH19KWG+rqqODDCHc504Lr8yKk73YH91m10bJ8VM3xHrMi1Gp/dDLDbM0rCetMkYmPKpWYj7j7MRDJJGt7U/ZiMSatGO5PDfjsrDQkVmqEz5eIwG31FpzY0RF+XUDY8zWh4fMmchFPnfvuqrmGRHYnmwUxnNZrtF8JCd5eBkxElkoJEVF1XhmkMX2UC+ww1czEwWAc3NtSRuVDzQhf6buhxxb7hzKit8AE282cUUBiuJGoVV/FNenV8Zsyp8K7SBIgTrBRlggOBtVn/7UjAVy309toivyERc=
+  app: pairodoro
+  on:
+    repo: Sokushinbutsu/Pairodoro

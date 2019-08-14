@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.0.0-rc.0",
     "axios": "^0.18.1",
+    "github-login": "^1.0.12",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-countdown": "^2.0.0",
