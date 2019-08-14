@@ -1,3 +1,4 @@
 /node_modules
 /config/mongoKey.js
 token.txt
+.env
