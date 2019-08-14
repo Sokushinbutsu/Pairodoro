@@ -3,6 +3,7 @@ const express = require("express");
 const bp = require("body-parser");
 const pomodoros = require("./routes/api/pomodoros");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
