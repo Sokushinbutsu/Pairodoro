@@ -23,8 +23,8 @@
     "easytimer.js": "^3.2.0",
     "express": "^4.16.4",
     "flipclock": "^0.10.8",
+    "material-table": "^1.40.0",
     "mongoose": "^5.5.9",
-    "typescript": "^3.4.5",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

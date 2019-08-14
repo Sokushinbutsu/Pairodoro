@@ -1,37 +1,44 @@
-import React from 'react';
-import Forms from './components/forms';
-import Table from './components/table';
-import moment from 'moment';
-import Axios from 'axios';
-import './App.css';
-import uuid from 'uuid';
+import React from "react";
+import Forms from "./components/Forms.jsx";
+import Table from "./components/Table.jsx";
+import Timer from "./components/Timer.jsx";
+import moment from "moment";
+import Axios from "axios";
+import "./App.css";
+import uuid from "uuid";
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      driver: '',
-      navigator: '',
-      periodLength: '',
-      numPeriods: '',
-      purpose: '',
-      date: '',
+      driver: "",
+      navigator: "",
+      periodLength: "",
+      numPeriods: "",
+      purpose: "",
+      date: "",
       items: []
     };
 
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   setTimer() {
-    const audio = new Audio(
-      'https://freesound.org/people/kwahmah_02/sounds/250629/download/250629__kwahmah-02__alarm1.mp3'
-    );
-    setTimeout(function() {
-      audio.play();
-    }, this.state.periodLength * 60000);
+    Axios.get("/api/pomodoros/alarmSound")
+      .then(alarm => {
+        const audio = new Audio(alarm.data);
+        setTimeout(function() {
+          audio.play();
+        }, this.state.periodLength * 1);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
-  handleSubmit = event => {
+  handleSubmit(event) {
     event.preventDefault();
 
     let item = {
@@ -40,32 +47,34 @@ class App extends React.Component {
       periodLength: this.state.periodLength,
       numPeriods: this.state.numPeriods,
       purpose: this.state.purpose,
-      date: moment().format('llll'),
+      date: moment().format("llll"),
       id: uuid()
     };
 
-    Axios.post('/api/pomodoros', item)
+    this.setTimer();
+
+    Axios.post("/api/pomodoros", item)
       .then(results => {
         this.setState(state => {
           const items = state.items.concat(item);
 
           return {
             items,
-            driver: '',
-            navigator: '',
-            periodLength: '',
-            numPeriods: '',
-            purpose: '',
-            date: ''
+            driver: "",
+            navigator: "",
+            periodLength: "",
+            numPeriods: "",
+            purpose: "",
+            date: ""
           };
         });
       })
       .catch(error => {
         console.error(error);
       });
-  };
+  }
 
-  handleChange = event => {
+  handleChange(event) {
     // generalized change handler,
     // will set state to number if parseInt is not NaN
     this.setState({
@@ -73,15 +82,11 @@ class App extends React.Component {
         ? parseInt(event.target.value)
         : event.target.value
     });
-  };
+  }
 
   handleDelete(id) {
     Axios.delete(`api/pomodoros/${id}`)
       .then(() => {
-        // const index = this.state.items.indexOf();
-        // let copy = [...this.state.items];
-        // copy.splice(index, 1);
-        // this.setState({ items: copy });
         this.setState(state => {
           const items = state.items.filter(item => item.id !== id);
 
@@ -98,6 +103,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <Timer />
         <div className="forms">
           <Forms
             handleSubmit={this.handleSubmit}

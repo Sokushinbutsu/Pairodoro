@@ -48,4 +48,18 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+//TODO: move this to another file or figure out how to get it from the client.
+
+router.get('/alarmSound', (req, res) => {
+  res.sendFile('/home/brian/dev/pairodoro/assets/alarmSound.mp3', function(
+    err
+  ) {
+    if (err) {
+      res.status(500).send();
+    } else {
+      console.log('sent');
+    }
+  });
+});
+
 module.exports = router;
