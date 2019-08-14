@@ -1,5 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
+//TODO: add github username, purpose and notes.
 
 const PomodoroSchema = new Schema({
   driver: {
@@ -29,6 +31,6 @@ const PomodoroSchema = new Schema({
   }
 });
 
-const Pomodoro = mongoose.model('pomodoro', PomodoroSchema);
+const Pomodoro = mongoose.model("pomodoro", PomodoroSchema);
 
 module.exports = Pomodoro;
