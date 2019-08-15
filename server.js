@@ -23,16 +23,6 @@ app.get("/authenticate/:code", (req, res) => {
   // This route takes in a code generated from a successful github login
   // and exchanges that code for a token we can use to access the API
 
-  // axios.post('/user', {
-  //   firstName: 'Fred',
-  //   lastName: 'Flintstone'
-  // })
-  // .then(function (response) {
-  //   console.log(response);
-  // })
-  // .catch(function (error) {
-  //   console.log(error);
-  // });
   console.log(req.params.code);
   console.log(process.env.CLIENT_ID);
   console.log(process.env.CLIENT_SECRET);
@@ -43,7 +33,8 @@ app.get("/authenticate/:code", (req, res) => {
     code: req.params.code
   })
     .then(response => {
-      res.status(200).send(response);
+      console.log(response);
+      res.status(200);
     })
     .catch(error => {
       res.status(500).send(error);
