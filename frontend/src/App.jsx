@@ -90,6 +90,7 @@ class App extends React.Component {
   }
 
   handleDelete(id) {
+    // TODO: dont actually delete from database
     Axios.delete(`api/pomodoros/${id}`)
       .then(() => {
         this.setState(state => {
@@ -106,11 +107,21 @@ class App extends React.Component {
   }
 
   onSuccess(response) {
+    // Sets access_token and username to state.
+    // TODO: investigate if this can be replaced with request for a username
+    // at authorization time.
     Axios.get(`/authenticate/${response.code}`)
       .then(({ data }) => {
         this.setState({
           access_token: data
         });
+        return Axios.get(`/username/${this.state.access_token}`).then(
+          response => {
+            this.setState({
+              username: response.data
+            });
+          }
+        );
       })
       .catch(error => {
         console.error(error);

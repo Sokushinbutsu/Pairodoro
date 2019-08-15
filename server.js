@@ -57,9 +57,26 @@ app.get("/authenticate/:code", (req, res) => {
 
 // access_token=fdf8e618bc66dbbeeff6339347cc2fada0ae0706&scope=public_repo%2Cuser%3Aemail&token_type=bearer
 
-app.get("/commits/:token", (req, res) => {
-  Axios.get;
+//axios.get('/api', {
+//   params: {
+//     foo: 'bar'
+//   }
+// });
+
+app.get("/username/:token", (req, res) => {
+  Axios.get(`https://api.github.com/user`, {
+    headers: { Authorization: `token ${req.params.token}` }
+  })
+    .then(({ data }) => {
+      console.log(data);
+      res.status(200).send(data.login);
+    })
+    .catch(error => {
+      res.status(500).send();
+    });
 });
+
+app.get("/commits/:token", (req, res) => {});
 
 app.use("/api/pomodoros", pomodoros);
 
