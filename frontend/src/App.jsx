@@ -104,6 +104,7 @@ class App extends React.Component {
   }
 
   onSuccess(response) {
+    console.log(response.code);
     Axios.post("/authenticate", {
       code: response.code
     })
