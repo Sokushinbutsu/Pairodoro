@@ -5,6 +5,7 @@ const pomodoros = require("./routes/api/pomodoros");
 const cors = require("cors");
 const path = require("path");
 const Axios = require("axios");
+const spliceToken = require("./helpers/spliceToken");
 
 const app = express();
 
@@ -28,12 +29,36 @@ app.get("/authenticate/:code", (req, res) => {
     code: req.params.code
   })
     .then(response => {
-      res.status(200).send(response.data);
+      res.status(200).send(spliceToken(response.data));
     })
     .catch(error => {
       res.status(500).send(error);
       console.error(error);
     });
+});
+
+// axios.get(
+//   url,
+//   {headers: {
+//       "name" : "value"
+//     }
+//   }
+// )
+// .then((response) => {
+//     var response = response.data;
+//   },
+//   (error) => {
+//     var status = error.response.status
+//   }
+// );
+
+// curl -H "Authorization: token fdf8e618bc66dbbeeff6339347cc2fada0ae0706"
+// https://api.github.com/user
+
+// access_token=fdf8e618bc66dbbeeff6339347cc2fada0ae0706&scope=public_repo%2Cuser%3Aemail&token_type=bearer
+
+app.get("/commits/:token", (req, res) => {
+  Axios.get;
 });
 
 app.use("/api/pomodoros", pomodoros);
