@@ -68,7 +68,6 @@ app.get("/username/:token", (req, res) => {
     headers: { Authorization: `token ${req.params.token}` }
   })
     .then(({ data }) => {
-      console.log(data);
       res.status(200).send(data.login);
     })
     .catch(error => {
@@ -76,7 +75,20 @@ app.get("/username/:token", (req, res) => {
     });
 });
 
-app.get("/commits/:token", (req, res) => {});
+app.get("/commits", (req, res) => {
+  Axios.get(
+    `https://api.github.com/repos/${req.query.login}/${req.query.repo}/commits`,
+    {
+      headers: { Authorization: `token ${req.query.token}` }
+    }
+  )
+    .then(({ data }) => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(500).send();
+    });
+});
 
 app.use("/api/pomodoros", pomodoros);
 

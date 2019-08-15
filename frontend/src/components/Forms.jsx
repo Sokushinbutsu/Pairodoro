@@ -54,6 +54,16 @@ class Forms extends React.Component {
             onChange={this.props.handleChange}
           />
         </label>
+        <label>
+          <span>Repo Name:</span>
+          <input
+            id="repo"
+            value={this.props.repoName}
+            type="text"
+            name="repoName"
+            onChange={this.props.handleChange}
+          />
+        </label>
 
         <input type="submit" value="Submit" />
       </form>
