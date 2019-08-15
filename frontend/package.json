@@ -13,6 +13,7 @@
     "react-dom": "^16.8.6",
     "react-flip-clock-en": "^1.0.6",
     "react-github-login": "^1.0.3",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-social-login": "^3.4.4",
     "x-react-flipclock": "^0.1.184153"

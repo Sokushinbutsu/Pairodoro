@@ -7,6 +7,8 @@ import Axios from "axios";
 import "./App.css";
 import uuid from "uuid";
 import GithubLogin from "github-login";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -102,7 +104,15 @@ class App extends React.Component {
   }
 
   onSuccess(response) {
-    console.log(response);
+    Axios.post("/authenticate", {
+      code: response.code
+    })
+      .then(() => {
+        console.log("successfully posted to authenticate route");
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
   onFailure(response) {
     console.error(response);
