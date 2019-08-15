@@ -101,14 +101,20 @@ class App extends React.Component {
       });
   }
 
-  onSuccess = response => console.log(response);
-  onFailure = response => console.error(response);
+  onSuccess(response) {
+    console.log(response);
+  }
+  onFailure(response) {
+    console.error(response);
+  }
 
   render() {
     return (
       <div className="App">
         <GithubLogin
           clientId="19f93a9095410be79efa"
+          redirectUri="https://pairodoro.herokuapp.com/"
+          scope="user:email public_repo"
           onSuccess={this.onSuccess}
           onFailure={this.onFailure}
         />
