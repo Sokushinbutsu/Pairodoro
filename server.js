@@ -22,19 +22,13 @@ app.get("/authenticate/:code", (req, res) => {
   // POST https://github.com/login/oauth/access_token
   // This route takes in a code generated from a successful github login
   // and exchanges that code for a token we can use to access the API
-
-  console.log(req.params.code);
-  console.log(process.env.CLIENT_ID);
-  console.log(process.env.CLIENT_SECRET);
-
   Axios.post(`https://github.com/login/oauth/access_token`, {
     client_id: process.env.CLIENT_ID,
     client_secret: process.env.CLIENT_SECRET,
     code: req.params.code
   })
     .then(response => {
-      console.log(response);
-      res.status(200);
+      res.status(200).send(response.data);
     })
     .catch(error => {
       res.status(500).send(error);

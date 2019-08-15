@@ -20,12 +20,14 @@ class App extends React.Component {
       numPeriods: "",
       purpose: "",
       date: "",
-      items: []
+      items: [],
+      access_token: ""
     };
 
     this.handleDelete = this.handleDelete.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onSuccess = this.onSuccess.bind(this);
   }
 
   setTimer() {
@@ -105,8 +107,10 @@ class App extends React.Component {
 
   onSuccess(response) {
     Axios.get(`/authenticate/${response.code}`)
-      .then(response => {
-        console.log(response);
+      .then(({ data }) => {
+        this.setState({
+          access_token: data
+        });
       })
       .catch(error => {
         console.error(error);
@@ -121,7 +125,7 @@ class App extends React.Component {
       <div className="App">
         <GithubLogin
           clientId="19f93a9095410be79efa"
-          redirectUri="https://pairodoro.herokuapp.com/"
+          redirectUri="http://localhost:3000"
           scope="user:email public_repo"
           onSuccess={this.onSuccess}
           onFailure={this.onFailure}
