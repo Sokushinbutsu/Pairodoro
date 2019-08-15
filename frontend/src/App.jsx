@@ -104,15 +104,12 @@ class App extends React.Component {
   }
 
   onSuccess(response) {
-    console.log(response.code);
-    Axios.post("/authenticate", {
-      code: response.code
-    })
-      .then(() => {
-        console.log("successfully posted to authenticate route");
+    Axios.get(`/authenticate/${response.code}`)
+      .then(response => {
+        console.log(response);
       })
-      .catch(err => {
-        console.error(err);
+      .catch(error => {
+        console.error(error);
       });
   }
   onFailure(response) {
