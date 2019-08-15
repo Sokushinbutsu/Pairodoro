@@ -2,3 +2,4 @@
 /config/mongoKey.js
 token.txt
 .env
+/frontend/build

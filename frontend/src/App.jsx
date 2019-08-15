@@ -6,6 +6,7 @@ import moment from "moment";
 import Axios from "axios";
 import "./App.css";
 import uuid from "uuid";
+import GithubLogin from "github-login";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -100,9 +101,17 @@ class App extends React.Component {
       });
   }
 
+  onSuccess = response => console.log(response);
+  onFailure = response => console.error(response);
+
   render() {
     return (
       <div className="App">
+        <GithubLogin
+          clientId="19f93a9095410be79efa"
+          onSuccess={this.onSuccess}
+          onFailure={this.onFailure}
+        />
         <Timer />
         <div className="forms">
           <Forms
