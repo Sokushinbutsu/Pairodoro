@@ -28,6 +28,10 @@ const PomodoroSchema = new Schema({
   id: {
     type: String,
     required: true
+  },
+  repoName: {
+    type: String,
+    required: true
   }
 });
 

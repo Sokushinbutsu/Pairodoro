@@ -7,7 +7,7 @@ import Axios from "axios";
 import "./App.css";
 import uuid from "uuid";
 import GithubLogin from "github-login";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+//import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +21,8 @@ class App extends React.Component {
       purpose: "",
       date: "",
       items: [],
-      access_token: ""
+      access_token: "",
+      repoName: ""
     };
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -46,22 +47,25 @@ class App extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    let item = {
+    // create document for mongo
+    let document = {
       driver: this.state.driver,
       navigator: this.state.navigator,
       periodLength: this.state.periodLength,
       numPeriods: this.state.numPeriods,
       purpose: this.state.purpose,
       date: moment().format("llll"),
-      id: uuid()
+      id: uuid(),
+      repoName: this.state.repoName
     };
 
     //this.setTimer();
 
-    Axios.post("/api/pomodoros", item)
+    Axios.post("/api/pomodoros", document)
       .then(results => {
+        // Don't need to set everything to empty.
         this.setState(state => {
-          const items = state.items.concat(item);
+          const items = state.items.concat(document);
 
           return {
             items,
@@ -70,7 +74,8 @@ class App extends React.Component {
             periodLength: "",
             numPeriods: "",
             purpose: "",
-            date: ""
+            date: "",
+            repoName: ""
           };
         });
       })
@@ -78,6 +83,7 @@ class App extends React.Component {
         console.error(error);
       });
 
+    // TODO: get all commites between specific time period
     Axios.get("/commits", {
       params: {
         login: this.state.login,
@@ -167,6 +173,7 @@ class App extends React.Component {
             newDate={this.state.date}
             newPurpose={this.state.purpose}
             newPeriods={this.state.numPeriods}
+            repoName={this.state.repoName}
           />
         </div>
         <div className="table">
