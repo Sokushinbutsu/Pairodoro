@@ -56,7 +56,7 @@ class App extends React.Component {
       id: uuid()
     };
 
-    this.setTimer();
+    //this.setTimer();
 
     Axios.post("/api/pomodoros", item)
       .then(results => {
@@ -73,6 +73,20 @@ class App extends React.Component {
             date: ""
           };
         });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+    Axios.get("/commits", {
+      params: {
+        login: this.state.login,
+        repo: "Pairodoro",
+        token: this.state.access_token
+      }
+    })
+      .then(response => {
+        console.log(response.data);
       })
       .catch(error => {
         console.error(error);
@@ -118,7 +132,7 @@ class App extends React.Component {
         return Axios.get(`/username/${this.state.access_token}`).then(
           response => {
             this.setState({
-              username: response.data
+              login: response.data
             });
           }
         );
@@ -128,6 +142,7 @@ class App extends React.Component {
       });
   }
   onFailure(response) {
+    //TODO: Display banner that login failed.
     console.error(response);
   }
 
