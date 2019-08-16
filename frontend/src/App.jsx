@@ -115,14 +115,12 @@ class App extends React.Component {
   }
 
   pollCommits() {
-    const length = this.state.periodLength * 60000;
-
     Axios.get("/commits", {
       params: {
         login: this.state.login,
         repo: this.state.repoName,
         token: this.state.access_token,
-        periodLength: length
+        periodLength: this.state.periodLength
       }
     })
       .then(response => {
