@@ -48,6 +48,20 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+// @route UPDATE api/pomodoros/notes
+// @desc Update notes
+router.post("/notes", (req, res) => {
+  console.log(req.body.id);
+  console.log(req.body.notes);
+  Pomodoro.findOneAndUpdate({ id: req.body.id }, { notes: req.body.notes })
+    .then(doc => {
+      res.status(200).send(doc);
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    });
+});
+
 //TODO: move this to another file or figure out how to get it from the client.
 
 // router.get('/alarmSound', (req, res) => {

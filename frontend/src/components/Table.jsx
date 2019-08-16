@@ -1,6 +1,34 @@
-import React from 'react';
+import React from "react";
+import Axios from "axios";
 
 class Table extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      notes: ""
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNotes = this.handleNotes.bind(this);
+  }
+
+  handleNotes(event) {
+    this.setState({ notes: event.target.value });
+  }
+
+  handleSubmit(id) {
+    Axios.post("/api/pomodoros/notes", {
+      notes: this.state.notes,
+      id: id
+    })
+      .then(() => {
+        console.log("success!");
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   render() {
     const items = this.props.items;
     // put the most recent at the top
@@ -27,11 +55,24 @@ class Table extends React.Component {
                 <td>{item.numPeriods}</td>
                 <td>{item.purpose}</td>
                 <td>
-                  <textarea />
+                  <textarea
+                    value={this.state.notes}
+                    onChange={this.handleNotes}
+                  />
+                  <input
+                    // Submit button
+                    className="submit-btn"
+                    type="button"
+                    data-uuid={item.uuid}
+                    onClick={() => {
+                      this.handleSubmit(item.id);
+                    }}
+                    value="✓"
+                  />
                 </td>
                 <td>{item.date}</td>
                 <td className="delete">
-                  {' '}
+                  {" "}
                   <input
                     className="del-btn"
                     type="button"

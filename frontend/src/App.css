@@ -60,6 +60,25 @@ form input[type="button"]:hover {
   text-align: center;
 }
 
+.submit-btn {
+  display: inline-block;
+  border: none;
+  padding: 0.5rem;
+  text-decoration: none;
+  background: #576e86;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  text-align: center;
+}
+
+.submit-btn:hover,
+.submit-btn:focus {
+  background: green;
+}
+
 .del-btn:hover,
 .del-btn:focus {
   background: red;
