@@ -1,6 +1,10 @@
-body {
+.App {
   display: flex;
-  flex-direction: column;
+}
+
+.forms,
+.table {
+  flex: 1;
 }
 
 table {
@@ -41,6 +45,7 @@ form input[type="button"] {
   border-radius: 5px;
   color: white;
 }
+
 form input[type="submit"]:hover,
 form input[type="button"]:hover {
   background: #394d61;
@@ -72,6 +77,21 @@ form input[type="button"]:hover {
   line-height: 1;
   cursor: pointer;
   text-align: center;
+}
+
+.login-btn {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
 
 .submit-btn:hover,
