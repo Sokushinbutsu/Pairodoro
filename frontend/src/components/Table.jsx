@@ -1,6 +1,5 @@
 import React from "react";
 import Axios from "axios";
-import MaterialTable from "material-table";
 
 class Table extends React.Component {
   constructor(props) {
@@ -92,49 +91,6 @@ class Table extends React.Component {
       </table>
     );
   }
-
-  // onRowDelete: oldData =>
-  // new Promise((resolve, reject) => {
-  //   setTimeout(() => {
-  //     {
-  //       let data = this.state.data;
-  //       const index = data.indexOf(oldData);
-  //       data.splice(index, 1);
-  //       this.setState({ data }, () => resolve());
-  //     }
-  //     resolve()
-  //   }, 1000)
-  // }),
-
-  // return (
-  //   <MaterialTable
-  //     columns={[
-  //       { title: "Driver", field: "driver" },
-  //       { title: "Navigator", field: "navigator" },
-  //       { title: "Period Length", field: "periodLength", type: "numeric" },
-  //       { title: "Number of Periods", field: "numPeriods" },
-  //       { title: "Purpose", field: "purpose" },
-  //       { title: "Repo Name", field: "repoName" },
-  //       { title: "Date", field: "date" }
-  //     ]}
-  //     data={this.props.items}
-  //     title="Pairodoro"
-  //     detailPanel={rowData => {
-  //       console.log(rowData);
-  //       return (
-  //         <iframe
-  //           width="100%"
-  //           height="315"
-  //           src="https://www.youtube.com/embed/C0DPdy98e4c"
-  //           frameborder="0"
-  //           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-  //           allowfullscreen
-  //         />
-  //       );
-  //     }}
-  //     onRowClick={(event, rowData, togglePanel) => togglePanel()}
-  //   />
-  // );
 }
 
 export default Table;

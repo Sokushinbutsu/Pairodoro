@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import GithubLogin from "github-login";
 
 const useStyles = makeStyles(theme => ({
@@ -29,16 +28,14 @@ const TimerBar = props => {
           <Typography variant="h6" className={classes.title}>
             Pairodoro
           </Typography>
-          <Button color="inherit">
-            <GithubLogin
-              className="login-btn"
-              clientId="19f93a9095410be79efa"
-              redirectUri="http://localhost:3000"
-              scope="user:email public_repo"
-              onSuccess={onSuccess}
-              onFailure={onFailure}
-            />
-          </Button>
+          <GithubLogin
+            className="login-btn"
+            clientId="19f93a9095410be79efa"
+            redirectUri="http://localhost:3000"
+            scope="user:email public_repo"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+          />
         </Toolbar>
       </AppBar>
     </div>
