@@ -2,12 +2,11 @@ import React from "react";
 import Forms from "./components/Forms.jsx";
 import Table from "./components/Table.jsx";
 import Timer from "./components/Timer.jsx";
+import TimerBar from "./components/TimerBar";
 import moment from "moment";
 import Axios from "axios";
 import "./App.css";
 import uuid from "uuid";
-import GithubLogin from "github-login";
-//import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
@@ -158,32 +157,28 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <GithubLogin
-          clientId="19f93a9095410be79efa"
-          redirectUri="http://localhost:3000"
-          scope="user:email public_repo"
-          onSuccess={this.onSuccess}
-          onFailure={this.onFailure}
-        />
-        <Timer />
-        <div className="forms">
-          <Forms
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            newNavigator={this.state.navigator}
-            newDriver={this.state.driver}
-            newPeriodLength={this.state.periodLength}
-            newDate={this.state.date}
-            newPurpose={this.state.purpose}
-            newPeriods={this.state.numPeriods}
-            repoName={this.state.repoName}
-          />
+      <>
+        <TimerBar onSuccess={this.onSuccess} onFailure={this.onFailure} />
+        <div className="App">
+          {/* <Timer /> */}
+          <div className="forms">
+            <Forms
+              handleSubmit={this.handleSubmit}
+              handleChange={this.handleChange}
+              newNavigator={this.state.navigator}
+              newDriver={this.state.driver}
+              newPeriodLength={this.state.periodLength}
+              newDate={this.state.date}
+              newPurpose={this.state.purpose}
+              newPeriods={this.state.numPeriods}
+              repoName={this.state.repoName}
+            />
+          </div>
+          <div className="table">
+            <Table items={this.state.items} handleDelete={this.handleDelete} />
+          </div>
         </div>
-        <div className="table">
-          <Table items={this.state.items} handleDelete={this.handleDelete} />
-        </div>
-      </div>
+      </>
     );
   }
 }
