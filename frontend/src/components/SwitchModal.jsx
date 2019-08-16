@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -21,15 +22,10 @@ const SwitchModal = props => {
   if (modalOpen) {
     return (
       <>
-        <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={modalOpen}
-          onClose={modalClose}
-        >
-          <div className="FeatureModal">
+        <Modal open={modalOpen} onClose={modalClose}>
+          <div className="SwitchModal">
             <div className={classes.paper}>
-              <h5 id="modal-title">Features</h5>
+              <Typography variant="h2">Time to Switch!</Typography>
             </div>
           </div>
         </Modal>
