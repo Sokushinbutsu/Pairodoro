@@ -76,17 +76,22 @@ app.get("/username/:token", (req, res) => {
 });
 
 app.get("/commits", (req, res) => {
+  console.log(req.query.login);
+  console.log(req.query.repo);
+  console.log(Date.now());
+  console.log(Date.now() + req.query.periodLength);
   Axios.get(
     `https://api.github.com/repos/${req.query.login}/${req.query.repo}/commits`,
     {
       headers: { Authorization: `token ${req.query.token}` },
       params: {
         since: Date.now(),
-        until: req.query.periodLength
+        until: Date.now() + req.query.periodLength
       }
     }
   )
-    .then(({ data }) => {
+    .then(response => {
+      console.log(response.data);
       res.status(200).send(data);
     })
     .catch(err => {

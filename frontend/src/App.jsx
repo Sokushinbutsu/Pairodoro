@@ -100,7 +100,6 @@ class App extends React.Component {
             numPeriods: "",
             purpose: "",
             date: "",
-            repoName: "",
             id: currentUUID
           };
         });
@@ -116,15 +115,18 @@ class App extends React.Component {
   }
 
   pollCommits() {
+    const length = this.state.periodLength * 60000;
+
     Axios.get("/commits", {
       params: {
         login: this.state.login,
         repo: this.state.repoName,
         token: this.state.access_token,
-        periodLength: this.state.periodLength * 60000
+        periodLength: length
       }
     })
       .then(response => {
+        console.log(response);
         this.setState(state => {
           const commits = state.commits.concat(response.data);
           return commits;

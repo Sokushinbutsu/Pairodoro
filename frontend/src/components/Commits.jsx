@@ -13,7 +13,6 @@ const Commits = props => {
           <th>
             {" "}
             <input
-              // Submit button
               className="submit-btn"
               type="button"
               onClick={() => {

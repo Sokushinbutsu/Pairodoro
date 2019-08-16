@@ -19,7 +19,7 @@ const PomodoroSchema = new Schema({
   },
   numPeriods: {
     type: Number,
-    required: true
+    required: false
   },
   starteDateTime: {
     type: Date,
