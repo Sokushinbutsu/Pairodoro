@@ -3,6 +3,7 @@ import uuid from "uuid";
 
 const Commits = props => {
   const { commits, pollCommits } = props;
+  console.log(commits);
 
   return (
     <table>
@@ -25,8 +26,10 @@ const Commits = props => {
         {commits.map(commit => {
           return (
             <tr key={uuid()}>
-              <td>{commit.message}</td>
-              <td>{commit.html_url}</td>
+              <td>{commit.commit.message}</td>
+              <td>
+                <a href={commit.html_url}>Commit Link</a>
+              </td>
             </tr>
           );
         })}

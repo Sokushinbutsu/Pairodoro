@@ -125,9 +125,8 @@ class App extends React.Component {
     })
       .then(response => {
         console.log(response);
-        this.setState(state => {
-          const commits = state.commits.concat(response.data);
-          return commits;
+        this.setState({
+          commits: response.data
         });
       })
       .catch(error => {

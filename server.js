@@ -85,7 +85,6 @@ app.get("/commits", (req, res) => {
     {
       headers: { Authorization: `token ${req.query.token}` },
       params: {
-        since: now.toISOString(),
         until: future.toISOString()
       }
     }
