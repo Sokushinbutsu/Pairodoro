@@ -1,15 +1,9 @@
-import React from 'react';
-// import Clock from 'react-flip-clock-en';
-import Countdown from 'react-countdown-now';
+import React from "react";
+import Countdown from "react-countdown-now";
 
-class Timer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return <Countdown date={Date.now() + 5000} />;
-  }
-}
+const Timer = props => {
+  const { end } = props;
+  return <Countdown date={Date.now() + end} />;
+};
 
 export default Timer;

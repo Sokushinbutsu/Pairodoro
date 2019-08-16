@@ -4,15 +4,16 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import GithubLogin from "github-login";
+import Timer from "./Timer";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
   title: {
+    flexGrow: 1
+  },
+  timer: {
     flexGrow: 1
   }
 }));
@@ -27,6 +28,9 @@ const TimerBar = props => {
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             Pairodoro
+          </Typography>
+          <Typography variant="h5" className={classes.timer}>
+            <Timer end={5000} />
           </Typography>
           <GithubLogin
             className="login-btn"
