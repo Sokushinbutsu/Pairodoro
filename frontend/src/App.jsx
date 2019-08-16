@@ -2,11 +2,12 @@ import React from "react";
 import Forms from "./components/Forms.jsx";
 import Table from "./components/Table.jsx";
 import TimerBar from "./components/TimerBar";
+import Commits from "./components/Commits";
+import SwitchModal from "./components/SwitchModal.jsx";
 import moment from "moment";
 import Axios from "axios";
 import "./App.css";
 import uuid from "uuid";
-import SwitchModal from "./components/SwitchModal.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +24,10 @@ class App extends React.Component {
       access_token: "",
       repoName: "",
       modalOpen: false,
-      submitted: false
+      submitted: false,
+      startDate: "",
+      endDate: "",
+      commits: []
     };
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -33,6 +37,7 @@ class App extends React.Component {
     this.setModalOpen = this.setModalOpen.bind(this);
     this.setModalClose = this.setModalClose.bind(this);
     this.setSubmitted = this.setSubmitted.bind(this);
+    this.pollCommits = this.pollCommits.bind(this);
   }
 
   setTimer() {
@@ -84,8 +89,6 @@ class App extends React.Component {
       notes: ""
     };
 
-    //this.setTimer();
-
     Axios.post("/api/pomodoros", document)
       .then(results => {
         // Don't need to set everything to empty.
@@ -94,8 +97,6 @@ class App extends React.Component {
 
           return {
             items,
-            driver: "",
-            navigator: "",
             numPeriods: "",
             purpose: "",
             date: "",
@@ -112,17 +113,22 @@ class App extends React.Component {
     this.setState({
       submitted: true
     });
+  }
 
-    // TODO: get all commits between specific time period
+  pollCommits() {
     Axios.get("/commits", {
       params: {
         login: this.state.login,
-        repo: "Pairodoro",
-        token: this.state.access_token
+        repo: this.state.repoName,
+        token: this.state.access_token,
+        periodLength: this.state.periodLength * 60000
       }
     })
       .then(response => {
-        console.log(response.data);
+        this.setState(state => {
+          const commits = state.commits.concat(response.data);
+          return commits;
+        });
       })
       .catch(error => {
         console.error(error);
@@ -214,6 +220,12 @@ class App extends React.Component {
           </div>
           <div className="table">
             <Table items={this.state.items} handleDelete={this.handleDelete} />
+          </div>
+          <div className="commits">
+            <Commits
+              commits={this.state.commits}
+              pollCommits={this.pollCommits}
+            />
           </div>
         </div>
       </>

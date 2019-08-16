@@ -79,7 +79,11 @@ app.get("/commits", (req, res) => {
   Axios.get(
     `https://api.github.com/repos/${req.query.login}/${req.query.repo}/commits`,
     {
-      headers: { Authorization: `token ${req.query.token}` }
+      headers: { Authorization: `token ${req.query.token}` },
+      params: {
+        since: Date.now(),
+        until: req.query.periodLength
+      }
     }
   )
     .then(({ data }) => {
