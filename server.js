@@ -37,32 +37,6 @@ app.get("/authenticate/:code", (req, res) => {
     });
 });
 
-// axios.get(
-//   url,
-//   {headers: {
-//       "name" : "value"
-//     }
-//   }
-// )
-// .then((response) => {
-//     var response = response.data;
-//   },
-//   (error) => {
-//     var status = error.response.status
-//   }
-// );
-
-// curl -H "Authorization: token fdf8e618bc66dbbeeff6339347cc2fada0ae0706"
-// https://api.github.com/user
-
-// access_token=fdf8e618bc66dbbeeff6339347cc2fada0ae0706&scope=public_repo%2Cuser%3Aemail&token_type=bearer
-
-//axios.get('/api', {
-//   params: {
-//     foo: 'bar'
-//   }
-// });
-
 app.get("/username/:token", (req, res) => {
   Axios.get(`https://api.github.com/user`, {
     headers: { Authorization: `token ${req.params.token}` }
@@ -79,6 +53,8 @@ app.get("/commits", (req, res) => {
   let now = new Date();
   let future = new Date();
   future.setMinutes(future.getMinutes() + req.query.periodLength);
+  console.log(now);
+  console.log(future);
 
   Axios.get(
     `https://api.github.com/repos/${req.query.login}/${req.query.repo}/commits`,
@@ -90,8 +66,6 @@ app.get("/commits", (req, res) => {
     }
   )
     .then(response => {
-      console.log(response);
-      console.log(response.data);
       res.status(200).send(response.data);
     })
     .catch(err => {

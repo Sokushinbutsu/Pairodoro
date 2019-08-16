@@ -30,6 +30,7 @@ const Commits = props => {
               <td>
                 <a href={commit.html_url}>Commit Link</a>
               </td>
+              <td />
             </tr>
           );
         })}

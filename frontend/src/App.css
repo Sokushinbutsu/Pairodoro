@@ -3,8 +3,13 @@
   padding-top: 2%;
 }
 
-.forms,
+.commits,
 .table {
+  flex: 2;
+  padding: 10px;
+}
+
+.forms {
   flex: 1;
 }
 
