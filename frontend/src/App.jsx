@@ -48,6 +48,8 @@ class App extends React.Component {
     event.preventDefault();
 
     // create document for mongo
+    let currentUUID = uuid();
+
     let document = {
       driver: this.state.driver,
       navigator: this.state.navigator,
@@ -55,8 +57,9 @@ class App extends React.Component {
       numPeriods: this.state.numPeriods,
       purpose: this.state.purpose,
       date: moment().format("llll"),
-      id: uuid(),
-      repoName: this.state.repoName
+      id: currentUUID,
+      repoName: this.state.repoName,
+      notes: ""
     };
 
     //this.setTimer();
@@ -75,7 +78,8 @@ class App extends React.Component {
             numPeriods: "",
             purpose: "",
             date: "",
-            repoName: ""
+            repoName: "",
+            id: currentUUID
           };
         });
       })
@@ -83,7 +87,7 @@ class App extends React.Component {
         console.error(error);
       });
 
-    // TODO: get all commites between specific time period
+    // TODO: get all commits between specific time period
     Axios.get("/commits", {
       params: {
         login: this.state.login,

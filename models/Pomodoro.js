@@ -32,6 +32,10 @@ const PomodoroSchema = new Schema({
   repoName: {
     type: String,
     required: true
+  },
+  notes: {
+    type: String,
+    required: false
   }
 });
 
