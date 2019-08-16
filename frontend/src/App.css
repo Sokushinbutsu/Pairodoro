@@ -52,6 +52,11 @@ form input[type="button"]:hover {
   background: #394d61;
 }
 
+/* .timer {
+  justify-content: center;
+  align-items: center;
+} */
+
 .del-btn {
   display: inline-block;
   border: none;
