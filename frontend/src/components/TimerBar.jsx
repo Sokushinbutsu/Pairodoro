@@ -19,7 +19,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TimerBar = props => {
-  const { onSuccess, onFailure, setModalOpen } = props;
+  const {
+    onSuccess,
+    onFailure,
+    setModalOpen,
+    end,
+    submitted,
+    setSubmitted
+  } = props;
   const classes = useStyles();
 
   return (
@@ -30,7 +37,12 @@ const TimerBar = props => {
             Pairodoro
           </Typography>
           <Typography variant="h5" className={classes.timer}>
-            <Timer end={5000} setModalOpen={setModalOpen} />
+            <Timer
+              end={end}
+              setModalOpen={setModalOpen}
+              submitted={submitted}
+              setSubmitted={setSubmitted}
+            />
           </Typography>
           <GithubLogin
             className="login-btn"

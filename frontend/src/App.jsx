@@ -15,14 +15,15 @@ class App extends React.Component {
     this.state = {
       driver: "",
       navigator: "",
-      periodLength: "",
+      periodLength: 25,
       numPeriods: "",
       purpose: "",
       date: "",
       items: [],
       access_token: "",
       repoName: "",
-      modalOpen: false
+      modalOpen: false,
+      submitted: false
     };
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -31,6 +32,7 @@ class App extends React.Component {
     this.onSuccess = this.onSuccess.bind(this);
     this.setModalOpen = this.setModalOpen.bind(this);
     this.setModalClose = this.setModalClose.bind(this);
+    this.setSubmitted = this.setSubmitted.bind(this);
   }
 
   setTimer() {
@@ -55,6 +57,12 @@ class App extends React.Component {
   setModalClose() {
     this.setState({
       modalOpen: false
+    });
+  }
+
+  setSubmitted() {
+    this.setState({
+      submitted: false
     });
   }
 
@@ -88,7 +96,6 @@ class App extends React.Component {
             items,
             driver: "",
             navigator: "",
-            periodLength: "",
             numPeriods: "",
             purpose: "",
             date: "",
@@ -100,6 +107,11 @@ class App extends React.Component {
       .catch(error => {
         console.error(error);
       });
+
+    // Start the timer
+    this.setState({
+      submitted: true
+    });
 
     // TODO: get all commits between specific time period
     Axios.get("/commits", {
@@ -165,6 +177,7 @@ class App extends React.Component {
         console.error(error);
       });
   }
+
   onFailure(response) {
     //TODO: Display banner that login failed.
     console.error(response);
@@ -177,6 +190,9 @@ class App extends React.Component {
           onSuccess={this.onSuccess}
           onFailure={this.onFailure}
           setModalOpen={this.setModalOpen}
+          end={this.state.periodLength}
+          submitted={this.state.submitted}
+          setSubmitted={this.setSubmitted}
         />
         <div className="App">
           <SwitchModal

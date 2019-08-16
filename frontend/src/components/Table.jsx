@@ -40,7 +40,7 @@ class Table extends React.Component {
             <th>Driver</th>
             <th>Navigator</th>
             <th>Period Length</th>
-            <th>Number of periods</th>
+            {/* <th>Number of periods</th> */}
             <th>Purpose</th>
             <th>Notes</th>
             <th>Date</th>
@@ -52,7 +52,7 @@ class Table extends React.Component {
                 <td>{item.driver}</td>
                 <td>{item.navigator}</td>
                 <td>{item.periodLength}</td>
-                <td>{item.numPeriods}</td>
+                {/* <td>{item.numPeriods}</td> */}
                 <td>{item.purpose}</td>
                 <td>
                   <textarea
