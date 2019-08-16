@@ -104,3 +104,10 @@ form input[type="button"]:hover {
 .del-btn:focus {
   background: red;
 }
+
+.SwitchModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
