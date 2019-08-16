@@ -1,12 +1,12 @@
 import React from "react";
 import Forms from "./components/Forms.jsx";
 import Table from "./components/Table.jsx";
-import Timer from "./components/Timer.jsx";
 import TimerBar from "./components/TimerBar";
 import moment from "moment";
 import Axios from "axios";
 import "./App.css";
 import uuid from "uuid";
+import SwitchModal from "./components/SwitchModal.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,13 +21,16 @@ class App extends React.Component {
       date: "",
       items: [],
       access_token: "",
-      repoName: ""
+      repoName: "",
+      modalOpen: false
     };
 
     this.handleDelete = this.handleDelete.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onSuccess = this.onSuccess.bind(this);
+    this.setModalOpen = this.setModalOpen.bind(this);
+    this.setModalClose = this.setModalClose.bind(this);
   }
 
   setTimer() {
@@ -41,6 +44,18 @@ class App extends React.Component {
       .catch(err => {
         console.error(err);
       });
+  }
+
+  setModalOpen() {
+    this.setState({
+      modalOpen: true
+    });
+  }
+
+  setModalClose() {
+    this.setState({
+      modalOpen: false
+    });
   }
 
   handleSubmit(event) {
@@ -158,9 +173,16 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <TimerBar onSuccess={this.onSuccess} onFailure={this.onFailure} />
+        <TimerBar
+          onSuccess={this.onSuccess}
+          onFailure={this.onFailure}
+          setModalOpen={this.setModalOpen}
+        />
         <div className="App">
-          {/* <Timer /> */}
+          <SwitchModal
+            modalOpen={this.state.modalOpen}
+            modalClose={this.setModalClose}
+          />
           <div className="forms">
             <Forms
               handleSubmit={this.handleSubmit}
